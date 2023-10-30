@@ -18,7 +18,7 @@
         
             <h1>Users</h1>
             
-            <form hx-post="/submit" hx-swap="beforend" target="#new-user" class=mb-3>
+            <form hx-post="/submit" hx-swap="beforeend" hx-target="#new-user" class="mb-3">
                 <input type="text" placeholder="First Name" name="first_name" class="form-control mb-3">
                 <input type="text" placeholder="Last Name" name="last_name" class="form-control mb-3">
                 <input type="email" placeholder="Email" name="email" class="form-control mb-3">
@@ -28,30 +28,30 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Email</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
-                <tbody id="new-user" hx-target="closest_tr" hx-swap="outerHTML swap:0.5s">
+                <tbody id="new-user" hx-target="closest tr" hx-swap="outerHTML swap:0.5s">
                     {% for user in users %}
                     <tr>
                         <td>{{user.first_name}}</td>
                         <td>{{user.last_name}}</td>
                         <td>{{user.email}}</td>
                         <td>
-                            <button class="btn btn-warning" hx-get="/get-edit-form/{{user.id}}">Edit User</button>
+                            <button class="btn btn-warning" hx-get="/get-edit-form/{{user.user_id}}">Edit</button>
                         </td>
                         <td>
-                            <button class="btn btn-danger" hx-get="/delete/{{user.id}}">Delete User</button>
+                            <button class="btn btn-danger" hx-delete="/delete/{{user.user_id}}">Delete</button>
                         </td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
-        
         </div>
-    
     </body>
 
 </html>
